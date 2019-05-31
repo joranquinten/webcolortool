@@ -19,6 +19,7 @@
         persistent-hint
         hint="Supported formats: rgb, rgba, hexadecimal, hexadicimal with alpha, color names"
         @change="formatInput($event)"
+        @focus="$event.target.select()"
       ></v-textarea>
     </div>
     <div v-if="colorListObject">

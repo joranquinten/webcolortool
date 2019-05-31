@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-layout pa-2>
     <ul class="color-list">
       <li
         v-for="(color, index) in colors"
@@ -40,7 +40,7 @@
       {{ snackbarText }}
       <v-btn color="#FF79C6" flat @click="snackbarVisible = false">Close</v-btn>
     </v-snackbar>
-  </div>
+  </v-layout>
 </template>
 
 <script>
@@ -94,6 +94,11 @@ export default {
   flex-wrap: wrap;
   list-style: none;
   justify-content: center;
+
+  &:last-of-type:after {
+    content: "";
+    flex-grow: 100;
+  }
 
   li {
     width: 18em;

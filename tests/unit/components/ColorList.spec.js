@@ -1,3 +1,7 @@
+import Vue from "vue";
+import Vuetify from "vuetify";
+Vue.use(Vuetify);
+
 import { shallowMount } from "@vue/test-utils";
 import ColorList from "../../../src/components/ColorList";
 
