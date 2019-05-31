@@ -16,6 +16,11 @@ exports[`<App /> should render without crashing 1`] = `
         <div class="color-tool"></div>
       </div>
     </main>
+    <footer class="v-footer theme--dark" style="height: auto;">
+      <div class="v-card__text white--text">
+        © 2019 —
+        <a href="https://joranquinten.nl/">Joran Quinten</a></div>
+    </footer>
   </div>
 </div>
 `;

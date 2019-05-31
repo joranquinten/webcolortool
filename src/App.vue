@@ -17,6 +17,12 @@
     <v-content>
       <color-tool />
     </v-content>
+    <v-footer dark height="auto">
+      <v-card-text class="white--text">
+        &copy; 2019 —
+        <a href="https://joranquinten.nl/">Joran Quinten</a>
+      </v-card-text>
+    </v-footer>
   </v-app>
 </template>
 
@@ -32,6 +38,15 @@ export default {
 </script>
 
 <style lang="scss">
+*::-moz-selection {
+  color: #44475a;
+  background-color: #f1fa8c;
+}
+*::selection {
+  color: #44475a;
+  background-color: #f1fa8c;
+}
+
 .clickable {
   cursor: pointer;
 }
