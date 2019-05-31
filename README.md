@@ -1,6 +1,6 @@
 # WebColorTool
 
-WebColorTool is a tool for working with color codes on the web. It converts, displays and orders colors based on a provided collection.
+WebColorTool is a tool for working with color codes on the web. It converts, displays and orders colors based on a provided collection. The primary aim of the grid is providing a visual reference to a color scheme.
 
 ## Installation
 
@@ -40,7 +40,7 @@ yarn run test:unit
 
 ## Usage
 
-Paste a `;` separated string of Hexadecimal color codes and the app wil render all of the colors to a grid with their `hex`, `rgb` and `hsl` values generated. The values can be copied to the clipboard. The aim of the grid is providing a visual reference to a color scheme.
+Paste a `;` separated string of color codes and the app wil render all of the colors to a grid with their `hex`, `rgb` and `hsl` values generated. The values can be copied to the clipboard.
 
 ## Contributing
 

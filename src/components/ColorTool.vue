@@ -2,7 +2,9 @@
   <div class="colortool">
     <div class="colors-input">
       <div class="instruction">
-        <p>Paste a ; or separated list of colors to start tooling!</p>
+        <p>
+          Paste a ; or separated list of colors to generate the colored tiles!
+        </p>
       </div>
       <v-textarea
         autofocus
@@ -15,7 +17,7 @@
         label="Paste your colors here"
         v-model="colorInput"
         persistent-hint
-        hint="Only hexadecimal values are supported at the moment."
+        hint="Supported formats: rgb, rgba, hexadecimal, hexadicimal with alpha, color names"
         @change="formatInput($event)"
       ></v-textarea>
     </div>

@@ -37,8 +37,12 @@ content`)
       expect(isValidColor("#fff")).toBeTruthy();
       expect(isValidColor("#c1c2c3")).toBeTruthy();
       expect(isValidColor("#CCC000")).toBeTruthy();
+      expect(isValidColor("white")).toBeTruthy();
+      expect(isValidColor("rebeccapurple")).toBeTruthy();
+      expect(isValidColor("#ffffffff")).toBeTruthy();
 
-      expect(isValidColor("#ffffffff")).toBeFalsy();
+      expect(isValidColor("#ffffffff00")).toBeFalsy();
+      expect(isValidColor("nonexistentcolor")).toBeFalsy();
     });
   });
 
@@ -52,8 +56,10 @@ content`)
     });
 
     it("should only process valid color", () => {
-      const output = transformColorList("some invalid thing;#fff");
-      expect(output).toHaveLength(1);
+      const output = transformColorList(
+        "some invalid thing;#fff; rebeccapurple; rgb(0, 0, 0);  rgb(125, 75, 200, 50);"
+      );
+      expect(output.length).toEqual(4);
       expect(output[0]).toEqual({
         original: "#fff",
         hex: "#FFFFFF",
@@ -61,6 +67,30 @@ content`)
         hsl: "hsl(0%, 0%, 100%)",
         sortProps: { color: 16777215, luminosity: 1 },
         isDark: false
+      });
+      expect(output[1]).toEqual({
+        hex: "#663399",
+        hsl: "hsl(270%, 50%, 40%)",
+        isDark: true,
+        original: "rebeccapurple",
+        rgb: "rgb(102, 51, 153)",
+        sortProps: { color: 6697881, luminosity: 0.07492341159447033 }
+      });
+      expect(output[2]).toEqual({
+        hex: "#000000",
+        hsl: "hsl(0%, 0%, 0%)",
+        isDark: true,
+        original: "rgb(0,0,0)",
+        rgb: "rgb(0, 0, 0)",
+        sortProps: { color: 0, luminosity: 0 }
+      });
+      expect(output[3]).toEqual({
+        hex: "#7D4BC8",
+        hsl: "hsl(264%, 53.2%, 53.9%)",
+        isDark: true,
+        original: "rgb(125,75,200,50)",
+        rgb: "rgb(125, 75, 200)",
+        sortProps: { color: 8211400, luminosity: 0.13562258759780754 }
       });
     });
   });

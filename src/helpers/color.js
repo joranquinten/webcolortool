@@ -1,4 +1,5 @@
 import Color from "color";
+import csscolors from "css-color-names";
 
 const formatInput = value =>
   value
@@ -8,8 +9,14 @@ const formatInput = value =>
     .trim();
 
 const isValidColor = color => {
-  const isHexadecimal = str => /^#[0-9a-fA-F]{3,6}$/.test(str);
-  return isHexadecimal(color);
+  let isValid;
+  try {
+    isValid = Color(color);
+    return isValid;
+  } catch (error) {
+    console.log(color);
+  }
+  return isValid || csscolors[color];
 };
 
 const transformColorList = colors =>
