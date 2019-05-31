@@ -20,110 +20,79 @@
       ></v-textarea>
     </div>
     <div v-if="colorListObject">
-      <ul class="color-list">
-        <li
-          v-for="(color, index) in colorListObject"
-          :key="index"
-          :class="{ dark: color.isDark }"
-          :style="{ backgroundColor: color.hex }"
-        >
-          <dl>
-            <dt>HEX</dt>
-            <dd
-              flat
-              small
-              v-clipboard:success="onCopy"
-              v-clipboard:copy="color.hex"
-              class="clickable"
-            >{{ color.hex }}</dd>
-            <dt>RGB</dt>
-            <dd
-              v-clipboard:success="onCopy"
-              v-clipboard:copy="color.rgb"
-              class="clickable"
-            >{{ color.rgb }}</dd>
-            <dt>HSL</dt>
-            <dd
-              v-clipboard:success="onCopy"
-              v-clipboard:copy="color.hsl"
-              class="clickable"
-            >{{ color.hsl }}</dd>
-          </dl>
-        </li>
-      </ul>
-      <v-snackbar v-model="snackbarVisible" :timeout="4000" top>
-        {{ snackbarText }}
-        <v-btn color="#FF79C6" flat @click="snackbarVisible = false">Close</v-btn>
-      </v-snackbar>
+      <v-layout align-center justify-space-between row>
+        <v-flex m6 pa-2>
+          <v-select
+            :items="sortByProperties"
+            v-model="sortBy"
+            label="Order by"
+            outline
+          ></v-select>
+        </v-flex>
+
+        <v-flex m6 pa-2>
+          <v-select
+            :items="sortOrderProperties"
+            v-model="sortOrder"
+            label="Direction"
+            outline
+          ></v-select>
+        </v-flex>
+      </v-layout>
+
+      <color-list :colors="colorListObject" pa-2></color-list>
     </div>
   </div>
 </template>
 
 <script>
-import Color from "color";
+import ColorList from "./ColorList";
 
-const isValidColor = color => {
-  const isHexadecimal = str => /^#[0-9a-fA-F]+$/.test(str);
-  return isHexadecimal(color);
+import { formatInput, transformColorList } from "../helpers/color";
+
+const SORT = {
+  DIRECTION: {
+    ASC: "ASC",
+    DESC: "DESC"
+  }
 };
 
 export default {
   name: "ColorTool",
+  components: {
+    ColorList
+  },
   data: function() {
     return {
       colorInput:
         "#282A36; #F8F8F2; #44475A; #6272A4; #8BE9FD; #50FA7B; #FFB86C; #FF79C6; #BD93F9; #FF5555; #F1FA8C; #21222C; #FF5555; #50FA7B; #F1FA8C; #BD93F9; #FF79C6; #8BE9FD; #F8F8F2; #6272A4; #FF6E6E; #69FF94; #FFFFA5; #D6ACFF; #FF92DF; #A4FFFF; #FFFFFF; #E9F284; #8BE9FE; #44475A; #424450; #FFFFFF; #44475A; #424450; #343746; #21222C; #191A21;",
-      snackbarVisible: false,
-      snackbarText: ""
+      sortBy: null,
+      sortOrder: SORT.DIRECTION.ASC,
+      sortByProperties: [
+        { text: "Hex value", value: "color" },
+        { text: "Luminosity", value: "luminosity" },
+        { text: "None", value: null }
+      ],
+      sortOrderProperties: [
+        { text: "Ascending", value: SORT.DIRECTION.ASC },
+        { text: "Descending", value: SORT.DIRECTION.DESC }
+      ]
     };
   },
   methods: {
     formatInput: function(value) {
-      const formattedValue = value.replace(/\n/g, " ");
-
-      this.colorInput = formattedValue;
-    },
-    onCopy: function(e) {
-      this.snackbarVisible = true;
-      this.snackbarText = `You copied: "${e.text}" to the clipboard`;
+      this.colorInput = formatInput(value);
     }
   },
   computed: {
     colorListObject: function() {
-      return this.colorInput
-        .replace(/\s+/g, "")
-        .split(";")
-        .reduce((colors, item) => {
-          if (item !== "" && isValidColor(item)) {
-            const color = Color(item);
-
-            const round = (value, precision) =>
-              Number(Math.round(value + "e" + precision) + "e-" + precision);
-
-            const formatNumbericValues = (hsl, precision) =>
-              hsl.color.map(value => round(value, precision));
-
-            const hslFormatted = (hsl = [], precision = 1) => {
-              const niceNumbers = formatNumbericValues(hsl, precision);
-              return `hsl(${niceNumbers[0]}%, ${niceNumbers[1]}%, ${
-                niceNumbers[2]
-              }%)`;
-            };
-
-            return [
-              ...colors,
-              {
-                original: item,
-                hex: color.hex(),
-                rgb: color.rgb().string(),
-                hsl: hslFormatted(color.hsl(), 1),
-                isDark: color.isDark()
-              }
-            ];
-          } else {
-            return colors;
-          }
-        }, []);
+      return transformColorList(this.colorInput).sort((a, b) => {
+        if (this.sortBy) {
+          return this.sortOrder === SORT.DIRECTION.ASC
+            ? a.sortProps[this.sortBy] - b.sortProps[this.sortBy]
+            : b.sortProps[this.sortBy] - a.sortProps[this.sortBy];
+        }
+      });
     }
   }
 };
@@ -136,58 +105,5 @@ export default {
 .colors-input {
   max-width: 600px;
   margin: 0 auto 1em;
-}
-
-.color-list {
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  list-style: none;
-  justify-content: center;
-
-  li {
-    width: 18em;
-    height: 9em;
-    color: #282a36;
-    border: 1px solid #fff;
-    padding: 1em;
-    font-size: 0.725em;
-    transition: all 0.08s ease-in-out;
-    flex-grow: 1;
-
-    &:hover {
-      transform: scale(1.1, 1.1);
-      box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
-    }
-
-    &.dark {
-      color: #fff;
-      border-color: #6272a4;
-    }
-
-    dl {
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      width: 24em;
-      overflow: visible;
-
-      dt {
-        flex: 0 0 15%;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-
-      dd {
-        flex: 0 0 85%;
-        margin-left: auto;
-        text-align: left;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
-    }
-  }
 }
 </style>
