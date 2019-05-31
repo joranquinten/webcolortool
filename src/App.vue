@@ -5,13 +5,17 @@
         <span>WebColorTool</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat href="https://github.com/joranquinten/webcolortool" target="_blank">
+      <v-btn
+        flat
+        href="https://github.com/joranquinten/webcolortool"
+        target="_blank"
+      >
         <span class="mr-2">github</span>
       </v-btn>
     </v-toolbar>
 
     <v-content>
-      <color-tool/>
+      <color-tool />
     </v-content>
   </v-app>
 </template>
