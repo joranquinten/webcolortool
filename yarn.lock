@@ -4624,11 +4624,6 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
-hex-to-color-name@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/hex-to-color-name/-/hex-to-color-name-1.0.1.tgz#6f7ca6929e7e2c0a9d99810fb79b9191a399bd48"
-  integrity sha1-b3ymkp5+LAqdmYEPt5uRkaOZvUg=
-
 highlight.js@^9.6.0:
   version "9.15.6"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.15.6.tgz#72d4d8d779ec066af9a17cb14360c3def0aa57c4"

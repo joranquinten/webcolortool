@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ColorList /> should render without crashing 1`] = `
+<div>
+  <ul class="color-list"></ul>
+  <div class="stub" timeout="4000" bottom=""></div>
+</div>
+`;
