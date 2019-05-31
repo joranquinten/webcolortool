@@ -1,6 +1,12 @@
 # WebColorTool
 
-## Project setup
+WebColorTool is a tool for working with color codes on the web. It converts, displays and orders colors based on a provided collection.
+
+## Installation
+
+The project is built using the Vue CLI, so the following should be familiar:
+
+### Project setup
 
 ```
 yarn install
@@ -18,12 +24,6 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
-
-```
-yarn run test
-```
-
 ### Lints and fixes files
 
 ```
@@ -32,10 +32,22 @@ yarn run lint
 
 ### Run your unit tests
 
+Optionally add the familiar [Jest flags](https://jestjs.io/docs/en/cli) (<pattern or filename>, `--watch`, `--coverage` etc)
+
 ```
 yarn run test:unit
 ```
 
-### Customize configuration
+## Usage
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Paste a `;` separated string of Hexadecimal color codes and the app wil render all of the colors to a grid with their `hex`, `rgb` and `hsl` values generated. The values can be copied to the clipboard. The aim of the grid is providing a visual reference to a color scheme.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
