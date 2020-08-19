@@ -5,7 +5,7 @@ exports[`<App /> should render without crashing 1`] = `
   <div class="application--wrap">
     <nav class="v-toolbar v-toolbar--fixed theme--dark" style="margin-top: 0px; padding-right: 0px; padding-left: 0px; transform: translateY(0px);">
       <div class="v-toolbar__content" style="height: 64px;">
-        <div class="v-toolbar__title headline text-uppercase"><span>WebColorTool</span></div>
+        <div class="v-toolbar__title headline text-uppercase"><span class="title--web">Web</span> <span class="title--color">Color</span> <span class="title--tool">Tool</span></div>
         <div class="spacer"></div> <a href="https://github.com/joranquinten/webcolortool" target="_blank" class="v-btn v-btn--flat theme--dark">
           <div class="v-btn__content"><span class="mr-2">github</span></div>
         </a>
