@@ -2,7 +2,9 @@
   <v-app dark>
     <v-toolbar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>WebColorTool</span>
+        <span class="title--web">Web</span>
+        <span class="title--color">Color</span>
+        <span class="title--tool">Tool</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
@@ -32,8 +34,8 @@ import ColorTool from "./components/ColorTool";
 export default {
   name: "App",
   components: {
-    ColorTool
-  }
+    ColorTool,
+  },
 };
 </script>
 
@@ -49,5 +51,33 @@ export default {
 
 .clickable {
   cursor: pointer;
+}
+
+a {
+  color: #ff79c6;
+
+  :hover,
+  :focus {
+    color: #50fa7b;
+  }
+  &:active {
+    color: #bd93f9;
+  }
+
+  &:visited {
+    color: #ff92df;
+  }
+}
+</style>
+<style lang="scss" scoped>
+.title--web {
+  color: #ff79c6;
+}
+.title--color {
+  color: #50fa7b;
+}
+.title--tool {
+  color: #bd93f9;
+  font-weight: 600;
 }
 </style>

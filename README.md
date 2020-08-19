@@ -1,6 +1,6 @@
 # [WebColorTool](https://webcolortool.netlify.com)
 
-WebColorTool is a tool for working with color codes on the web. It converts, displays and orders colors based on a provided collection. The primary aim of the grid is providing a visual reference to a color scheme.
+WebColorTool is a tool for working with color codes on the web. It converts, displays and orders colors based on a provided collection. The primary aim of the grid is providing a visual reference to a color scheme and make it easy to extract colors in the format that you need (Hex, RGB or HSL).
 
 ## Installation
 
