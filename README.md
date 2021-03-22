@@ -17,6 +17,9 @@ For Mac users, you can install the tool by downloading the [latest release](http
 
 Paste a `;` separated string of color codes and the app wil render all of the colors to a grid with their `hex`, `rgb` and `hsl` values generated. The values can be copied to the clipboard by clicking on the appropriate line.
 
+### Support
+If you like this tool and use it a lot, consider [buying me a coffee ☕️](https://www.buymeacoffee.com/joranquinten)!
+
 ## Contributing 🤷‍♂️
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
