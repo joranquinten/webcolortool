@@ -22,14 +22,14 @@ describe("helpers/color", () => {
         formatInput(`
 `)
       ).toEqual("");
-    });
-    expect(
-      formatInput(`
+      expect(
+        formatInput(`
 some
 
 
 content`)
-    ).toEqual("some content");
+      ).toEqual("some content");
+    });
   });
 
   describe("isValidColor", () => {
