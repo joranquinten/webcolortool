@@ -1,5 +1,5 @@
 <template>
-  <v-layout pa-2>
+  <v-container class="pa-2">
     <ul class="color-list">
       <li
         v-for="(color, index) in colors"
@@ -10,24 +10,21 @@
         <dl>
           <dt>HEX</dt>
           <dd
-            v-clipboard:success="onCopy"
-            v-clipboard:copy="color.hex"
+            @click="copyToClipboard(color.hex)"
             class="clickable"
           >
             {{ color.hex }}
           </dd>
           <dt>RGB</dt>
           <dd
-            v-clipboard:success="onCopy"
-            v-clipboard:copy="color.rgb"
+            @click="copyToClipboard(color.rgb)"
             class="clickable"
           >
             {{ color.rgb }}
           </dd>
           <dt>HSL</dt>
           <dd
-            v-clipboard:success="onCopy"
-            v-clipboard:copy="color.hsl"
+            @click="copyToClipboard(color.hsl)"
             class="clickable"
           >
             {{ color.hsl }}
@@ -36,14 +33,16 @@
       </li>
     </ul>
 
-    <v-snackbar v-model="snackbarVisible" :timeout="4000" bottom>
+    <v-snackbar v-model="snackbarVisible" :timeout="4000" location="bottom">
       {{ snackbarText }}
-      <v-btn color="#FF79C6" flat @click="snackbarVisible = false">Close</v-btn>
+      <v-btn color="#FF79C6" variant="flat" @click="snackbarVisible = false">Close</v-btn>
     </v-snackbar>
-  </v-layout>
+  </v-container>
 </template>
 
 <script>
+import useClipboard from "vue-clipboard3";
+
 export default {
   name: "colorList",
 
@@ -62,11 +61,11 @@ export default {
           let isValid;
           value.forEach(element => {
             if (
-              element.hasOwnProperty("isDark") &&
+              Object.hasOwn(element, "isDark") &&
               (element.isDark === false || element.isDark === true) &&
-              element.hasOwnProperty("hex") &&
-              element.hasOwnProperty("rgb") &&
-              element.hasOwnProperty("hsl")
+              Object.hasOwn(element, "hex") &&
+              Object.hasOwn(element, "rgb") &&
+              Object.hasOwn(element, "hsl")
             )
               isValid = true;
           });
@@ -77,9 +76,15 @@ export default {
     }
   },
   methods: {
-    onCopy: function(e) {
-      this.snackbarVisible = true;
-      this.snackbarText = `You copied: "${e.text}" to the clipboard`;
+    async copyToClipboard(text) {
+      const { toClipboard } = useClipboard();
+      try {
+        await toClipboard(text);
+        this.snackbarVisible = true;
+        this.snackbarText = `You copied: "${text}" to the clipboard`;
+      } catch (error) {
+        console.error("Failed to copy to clipboard:", error);
+      }
     }
   }
 };
