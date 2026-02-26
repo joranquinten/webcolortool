@@ -72,13 +72,13 @@ export default {
       sortBy: null,
       sortOrder: SORT.DIRECTION.ASC,
       sortByProperties: [
-        { text: "Hex value", value: "color" },
-        { text: "Luminosity", value: "luminosity" },
-        { text: "None", value: null }
+        { title: "Hex value", value: "color" },
+        { title: "Luminosity", value: "luminosity" },
+        { title: "None", value: null }
       ],
       sortOrderProperties: [
-        { text: "Ascending", value: SORT.DIRECTION.ASC },
-        { text: "Descending", value: SORT.DIRECTION.DESC }
+        { title: "Ascending", value: SORT.DIRECTION.ASC },
+        { title: "Descending", value: SORT.DIRECTION.DESC }
       ]
     };
   },

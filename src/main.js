@@ -1,9 +1,19 @@
 import { createApp } from "vue";
 import { createVuetify } from "vuetify";
+import "vuetify/styles";
+import { aliases, mdi } from "vuetify/iconsets/mdi";
+import "@mdi/font/css/materialdesignicons.css";
 import VueClipboard from "vue-clipboard3";
 import App from "./App.vue";
 
 const vuetify = createVuetify({
+  icons: {
+    defaultSet: "mdi",
+    aliases,
+    sets: {
+      mdi
+    }
+  },
   theme: {
     themes: {
       light: {
