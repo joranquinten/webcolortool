@@ -37,23 +37,29 @@ describe("<ColorTool />", () => {
       }
     });
 
-    await wrapper.setData({ colorInput: "#fff; #000; #ccc; " });
+    wrapper.vm.colorInput = "#fff; #000; #ccc; ";
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.vm.colorListObject[0].original).toEqual("#fff");
     expect(wrapper.vm.colorListObject[1].original).toEqual("#000");
     expect(wrapper.vm.colorListObject[2].original).toEqual("#ccc");
 
-    await wrapper.setData({ sortBy: "color", sortOrder: "ASC" });
+    wrapper.vm.sortBy = "color";
+    wrapper.vm.sortOrder = "ASC";
+    await wrapper.vm.$nextTick();
     expect(wrapper.vm.colorListObject[0].original).toEqual("#000");
     expect(wrapper.vm.colorListObject[1].original).toEqual("#ccc");
     expect(wrapper.vm.colorListObject[2].original).toEqual("#fff");
 
-    await wrapper.setData({ sortBy: "color", sortOrder: "DESC" });
+    wrapper.vm.sortBy = "color";
+    wrapper.vm.sortOrder = "DESC";
+    await wrapper.vm.$nextTick();
     expect(wrapper.vm.colorListObject[0].original).toEqual("#fff");
     expect(wrapper.vm.colorListObject[1].original).toEqual("#ccc");
     expect(wrapper.vm.colorListObject[2].original).toEqual("#000");
 
-    await wrapper.setData({ sortBy: null });
+    wrapper.vm.sortBy = null;
+    await wrapper.vm.$nextTick();
     expect(wrapper.vm.colorListObject[0].original).toEqual("#fff");
     expect(wrapper.vm.colorListObject[1].original).toEqual("#000");
     expect(wrapper.vm.colorListObject[2].original).toEqual("#ccc");
