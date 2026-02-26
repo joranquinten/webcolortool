@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <v-toolbar app>
+    <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
         <span class="title--web">Web</span>
         <span class="title--color">Color</span>
@@ -8,17 +8,17 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
-        flat
+        variant="flat"
         href="https://github.com/joranquinten/webcolortool"
         target="_blank"
       >
         <span class="mr-2">github</span>
       </v-btn>
-    </v-toolbar>
+    </v-app-bar>
 
-    <v-content>
+    <v-main>
       <color-tool />
-    </v-content>
+    </v-main>
     <v-footer dark height="auto">
       <v-card-text class="white--text">
         &copy; 2019 —
