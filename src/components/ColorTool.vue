@@ -9,11 +9,11 @@
       <v-textarea
         autofocus
         background-color="#BD93F9"
-        outline
+        variant="outlined"
         auto-grow
         rows="1"
         name="colorsInput"
-        browser-autocomplete="false"
+        autocomplete="false"
         label="Paste your colors here"
         v-model="colorInput"
         persistent-hint
@@ -23,25 +23,25 @@
       ></v-textarea>
     </div>
     <div v-if="colorListObject">
-      <v-layout align-center justify-space-between row>
-        <v-flex m6 pa-2>
+      <v-row align="center" justify="space-between">
+        <v-col cols="6" class="pa-2">
           <v-select
             :items="sortByProperties"
             v-model="sortBy"
             label="Order by"
-            outline
+            variant="outlined"
           ></v-select>
-        </v-flex>
+        </v-col>
 
-        <v-flex m6 pa-2>
+        <v-col cols="6" class="pa-2">
           <v-select
             :items="sortOrderProperties"
             v-model="sortOrder"
             label="Direction"
-            outline
+            variant="outlined"
           ></v-select>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
 
       <color-list :colors="colorListObject" pa-2></color-list>
     </div>
