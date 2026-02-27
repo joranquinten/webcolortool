@@ -38,20 +38,9 @@ WebColorTool was built by me for something that I needed. I figured maybe other 
 
 _This part is for the code monkeys_ 🐒
 
-## Technology Stack
-
-This project has been migrated to modern web technologies:
-- **Vue 3** with Composition API support
-- **Vuetify 3** for UI components
-- **Vue CLI 5** for build tooling
-- **Electron** (latest) for desktop app
-- Supports both **web deployment** (Netlify) and **desktop deployment** (Electron)
-
 ## Installation
 
-**Requirements:**
-- Node.js 18+ (Node.js 20 recommended)
-- Yarn or npm package manager
+The project is built using the Vue CLI, so the following should be familiar (and I'm sure you could find the `npm` counterpart of the commands if that's your taste):
 
 ### Project setup
 
@@ -67,25 +56,25 @@ For the web version, use the following command:
 yarn run serve
 ```
 
-For the Electron desktop version, use the following command:
+For the electron version, use the following command:
 ```
-yarn run electron:serve
+electron:serve
 ```
 
 ### Compiles and minifies for production
 
-For the web version (deployed to Netlify), use the following command:
+For the web version, use the following command:
 
 ```
 yarn run build
 ```
 
-For the Electron desktop version, use the following command:
+For the electron version, use the following command:
 ```
-yarn run electron:build
+electron:build
 ```
 
-☝️ The Electron build currently compiles for MacOS. The web build works on all modern browsers.
+☝️ This compiles only for MacOS at the moment.
 
 ### Lints and fixes files
 
@@ -101,20 +90,7 @@ Optionally add the familiar [Jest flags](https://jestjs.io/docs/en/cli) (<patter
 yarn run test:unit
 ```
 
-That's pretty much it. As long as you adhere to Vue's own styleguide and best practices, improvements are always welcome. I am aware that the project is not particularly well organized, optimized or covered by tests. It was a quick way of setting up something that I needed.
-
-### Deployment
-
-**Web Deployment (Netlify):**
-- The project is configured for automatic deployment to Netlify
-- Node.js version is managed via `.nvmrc` file (Node 18+)
-- Build configuration is in `netlify.toml`
-- The web build works independently of Electron dependencies
-
-**Desktop Deployment (Electron):**
-- Use `yarn run electron:build` to create distributable packages
-- Currently configured for MacOS builds
-- The desktop app works offline with full functionality
+That's pretty much it. As long as you adhere to Vues own styleguide and best practices, improvements are always welcome. I am aware that the project is that particularly well organized, optimized or covered by tests. It's was a quick way of setting up something that I needed. 
 
 Cheers,
 
